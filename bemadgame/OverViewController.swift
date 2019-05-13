@@ -21,12 +21,12 @@ class OverViewController: UIViewController {
         BestScore.isHidden = true
         good.isHidden = true
         job.isHidden = true
-        let highest = UserDefaults.standard.integer(forKey: "high")
+        let highest = UserDefaults.standard.integer(forKey: "higher")
         if let my_score = score, let myscore = Int(my_score) {
             ScoreLabel.text = my_score
             highScore.text = String(highest)
             if myscore > highest{
-                UserDefaults.standard.set(myscore, forKey: "high")
+                UserDefaults.standard.set(myscore, forKey: "higher")
                 BestScore.isHidden = false
                 good.isHidden = false
                 job.isHidden = false

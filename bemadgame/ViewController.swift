@@ -25,14 +25,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let highest = UserDefaults.standard.integer(forKey: "high")
+        let highest = UserDefaults.standard.integer(forKey: "higher")
         highscore.text = String(highest)
         repeatSix()
 
     }
     func repeatSix() {
         
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 3, delay: 0, animations: {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 5, delay: 0, animations: {
             self.six.center = CGPoint(x: -150, y: 100)
             self.six2.center = CGPoint(x: -150, y: 83)
             self.six3.center = CGPoint(x: -150, y: 151)

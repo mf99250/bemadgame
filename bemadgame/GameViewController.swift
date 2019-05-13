@@ -25,6 +25,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         gameInit()
+        goal = 0
         var sec = 20
         time_out.isHidden = true
         timeup.isHidden = true
