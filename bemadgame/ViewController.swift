@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SafariServices
+import UserNotifications
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , SFSafariViewControllerDelegate {
 
     @IBOutlet weak var highscore: UILabel!
     @IBOutlet weak var six: UILabel!
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let highest = UserDefaults.standard.integer(forKey: "higher")
+        let highest = UserDefaults.standard.integer(forKey: "highe")
         highscore.text = String(highest)
         repeatSix()
 
@@ -47,13 +49,32 @@ class ViewController: UIViewController {
         })
 
     }
-
     @IBAction func gameRule(_ sender: Any) {
         let controller = UIAlertController(title: "遊戲說明", message: "簡單來說，請在時間內配對出所有牌，然後為了表現出這個遊戲很international，裡面大多採用英文，最後說一句，Gr NB!!!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
     }
-    
+
+    @IBAction func Weblink(_ sender: AnyObject) {
+        if let url = URL(string: "https://www.weibo.com/p/10080829515db321a7fa895db569099b540f6d/super_index?from=page_100808&mod=TAB")
+        {
+            let safari = SFSafariViewController(url: url)
+            safari.delegate = self
+            present(safari, animated: true, completion: nil)
+        }
+        let content = UNMutableNotificationContent()
+        content.title = "Weibo超話"
+        content.subtitle = "Ｇr戰隊"
+        content.body = "超話有新更新囉！趕快來看看吧！"
+        content.badge = 1
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let request = UNNotificationRequest(identifier: "notification1", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+    }
+        
 }
 
